@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Planning Areas of Singapore</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="main-container">
+        <nav>
+            <div class="title">Planning Areas of Singapore</div>
+            <div class="nav-links">
+                <a class="nav-link" href="https://github.com/yoouzee/class-five-map" target="_blank"
+                    rel="noopener noreferrer">Github</a>
+            </div>
+
+        </nav>
+        <div id="content-container">
+            <div id="sidebar">
+                <p>This is a simple, responsive map that displays different demographic data by planning area in
+                    Singapore.</p>
+                <p>Toggle the metrics below to refresh the map visualization. Hover over the map to select a planning
+                    area and update metric values.</p>
+
+                <h3>Select Metric</h3>
+                <div class="year-buttons">
+                    <div class="metric-container">
+                        <input type="checkbox" id="metric-youth" class="metric-checkbox">
+                        <label for="metric-youth" class="metric-label">Youth Population</label>
+                        <div class="metric-details">
+                            <p>Description for Youth Population...</p>
+                            <p>Legend for Youth Population...</p>
+                        </div>
+                    </div>
+                    <div class="metric-container">
+                        <input type="checkbox" id="metric-old" class="metric-checkbox">
+                        <label for="metric-old" class="metric-label">Elderly Population</label>
+                        <div class="metric-details">
+                            <p>Description for Elderly Population...</p>
+                            <p>Legend for Elderly Population...</p>
+                        </div>
+                    </div>
+                    <div class="metric-container">
+                        <input type="checkbox" id="metric-chinese" class="metric-checkbox">
+                        <label for="metric-chinese" class="metric-label">Chinese Population</label>
+                        <div class="metric-details">
+                            <p>Description for Chinese Population...</p>
+                            <p>Legend for Chinese Population...</p>
+                        </div>
+                    </div>
+                    <div class="metric-container">
+                        <input type="checkbox" id="metric-malay" class="metric-checkbox">
+                        <label for="metric-malay" class="metric-label">Malay Population</label>
+                        <div class="metric-details">
+                            <p>Description for Malay Population...</p>
+                            <p>Legend for Malay Population...</p>
+                        </div>
+                    </div>
+                    <div class="metric-container">
+                        <input type="checkbox" id="metric-indian" class="metric-checkbox">
+                        <label for="metric-indian" class="metric-label">Indian Population</label>
+                        <div class="metric-details">
+                            <p>Description for Indian Population...</p>
+                            <p>Legend for Indian Population...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: smaller;">Data for this map was taken from the <a
+                        href="https://electionlab.mit.edu">MIT Election Data Lab</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="./js/scripts.js"></script>
+
+</body>
+
+</html>
