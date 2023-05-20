@@ -1,5 +1,8 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9vdXplZSIsImEiOiJjbGc1cWoweWkwNjAwM2Vwbzc1cGVyNmxsIn0.dgHHzAHSakJWLbVW4jFoHQ';
 
+
+console.log('Before map initialization');
+
 const map = new mapboxgl.Map({
     container: "map", // container ID
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -9,11 +12,13 @@ const map = new mapboxgl.Map({
     minZoom: 10, // set min zoom
     maxZoom: 13 // set max zoom
 });
+console.log('After map initialization');
+
 map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', function () {
 
-    // import our election data that we converted to wgs84 in QGIS
+    // import our demographic data that we converted to wgs84 in QGIS
     map.addSource('planning-area', {
         type: 'geojson',
         data: './data/Version_1_Data.geojson',
