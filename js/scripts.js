@@ -1,8 +1,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9vdXplZSIsImEiOiJjbGc1cWoweWkwNjAwM2Vwbzc1cGVyNmxsIn0.dgHHzAHSakJWLbVW4jFoHQ';
 
+
+// Create a new Mapbox GL map instance
 const map = new mapboxgl.Map({
     container: "map", // container ID
-    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: "mapbox://styles/mapbox/streets-v12", // style URL
     center: [103.8, 1.35], // starting position [lng, lat]
     zoom: 11, // starting zoom
@@ -10,17 +11,19 @@ const map = new mapboxgl.Map({
     maxZoom: 13 // set max zoom
 });
 
+// Add navigation control to the map
 map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', function () {
 
-    // import our demographic data that we converted to wgs84 in QGIS
+    // Import the planning area data as a GeoJSON source
     map.addSource('planning-area', {
         type: 'geojson',
         data: './data/Version_1_Data.geojson',
         generateId: true
     })
 
+    // Add a fill layer for the planning areas
     map.addLayer({
         id: 'fill-planning-area',
         type: 'fill',
@@ -30,24 +33,28 @@ map.on('load', function () {
         }
     });
 
+    // Add a line layer for the planning area outlines
     map.addLayer({
         id: 'planning-area-outline',
         type: 'line',
         source: 'planning-area',
         paint: {
             'line-color': '#000000', // Default stroke color (e.g., black)
-            'line-opacity': 0.2,
+            'line-opacity': 0.2, // Default stroke opacity
             'line-width': 1 // Default planning area stroke weight
         }
     });
 
+    // Handle click events on the planning areas
     map.on('click', 'fill-planning-area', (e) => {
+        // Create a popup at the clicked location and display the planning area name
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(e.features[0].properties.PLN_AREA_N)
             .addTo(map);
     });
 
+    // Handle mousemove events on the planning areas
     map.on('mousemove', 'fill-planning-area', (e) => {
         const selectedAreaText = document.getElementById('selected-area-text');
         const selectedAreaContainer = document.getElementById('selected-area-container');
@@ -71,7 +78,7 @@ map.on('load', function () {
         // Add active state to the container
         selectedAreaContainer.classList.add('active');
 
-        // Get the metric data element
+        // Update the content of the metric data elements with the actual data
         const metricYouthDataElement = document.getElementById('metric-youth-data');
         const metricOldDataElement = document.getElementById('metric-old-data');
         const metricChineseDataElement = document.getElementById('metric-chinese-data');
@@ -79,7 +86,6 @@ map.on('load', function () {
         const metricIndianDataElement = document.getElementById('metric-indian-data');
         const metricPublicDataElement = document.getElementById('metric-public-data');
 
-        // Update the content of the metric data element with the actual data
         metricYouthDataElement.textContent = `${e.features[0].properties['Version 1 Data_% Young']}%`;
         metricOldDataElement.textContent = `${e.features[0].properties['Version 1 Data_% Old']}%`;
         metricChineseDataElement.textContent = `${e.features[0].properties['Version 1 Data_% Chinese']}%`;
@@ -88,6 +94,7 @@ map.on('load', function () {
         metricPublicDataElement.textContent = `${e.features[0].properties['Version 1 Data_% Public']}%`;
     });
 
+    // Handle mouseout events on the planning areas
     map.on('mouseout', 'fill-planning-area', (e) => {
         const selectedAreaContainer = document.getElementById('selected-area-container');
 
