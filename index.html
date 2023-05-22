@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Planning Areas of Singapore</title>
+    <title>Singapore Demographics by Planning Area</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
@@ -15,70 +15,108 @@
 
     <div id="main-container">
         <nav>
-            <div class="title">Planning Areas of Singapore</div>
+            <div class="title">Singapore Demographics by Planning Area</div>
             <div class="nav-links">
-                <a class="nav-link" href="https://github.com/yoouzee/class-five-map" target="_blank"
+                <a class="nav-link" href="https://github.com/yoouzee/web-map-project" target="_blank"
                     rel="noopener noreferrer">Github</a>
             </div>
 
         </nav>
         <div id="content-container">
             <div id="sidebar">
-                <p>This is a simple, responsive map that displays different demographic data by planning area in
-                    Singapore.</p>
+                <p>Welcome!</p>
+                <p>This is a simple, responsive map that displays different demographic data at the planning
+                    area level in Singapore.</p>
+                <p>There are a total of 55 planning areas in Singapore. 28 planning areas, with a population of 15,000
+                    or greater, are displayed on this map.</p>
                 <p>Toggle the metrics below to refresh the map visualization. Hover over the map to select a planning
                     area and update metric values.</p>
 
-                <h3>Select Metric</h3>
-                <div class="year-buttons">
-                    <div class="metric-container">
-                        <input type="checkbox" id="metric-youth" class="metric-checkbox">
-                        <label for="metric-youth" class="metric-label">Youth Population</label>
-                        <div class="metric-details">
-                            <p>Description for Youth Population...</p>
-                            <p>Legend for Youth Population...</p>
-                        </div>
+                <div class="sidebar-header">
+                    <h3>Select Metric</h3>
+                    <span id="selected-area-text"></span>
+                    <div id="selected-area-container" class="active"></div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-youth" class="metric-checkbox">
+                    <label for="metric-youth" class="metric-label">
+                        Youth Population
+                        <span id="metric-youth-data" class="metric-data"
+                            style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population between 0-14 Years Old</p>
                     </div>
-                    <div class="metric-container">
-                        <input type="checkbox" id="metric-old" class="metric-checkbox">
-                        <label for="metric-old" class="metric-label">Elderly Population</label>
-                        <div class="metric-details">
-                            <p>Description for Elderly Population...</p>
-                            <p>Legend for Elderly Population...</p>
-                        </div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-old" class="metric-checkbox">
+                    <label for="metric-old" class="metric-label">
+                        Elderly Population
+                        <span id="metric-old-data" class="metric-data" style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population 65 Years Old and Older</p>
                     </div>
-                    <div class="metric-container">
-                        <input type="checkbox" id="metric-chinese" class="metric-checkbox">
-                        <label for="metric-chinese" class="metric-label">Chinese Population</label>
-                        <div class="metric-details">
-                            <p>Description for Chinese Population...</p>
-                            <p>Legend for Chinese Population...</p>
-                        </div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-chinese" class="metric-checkbox">
+                    <label for="metric-chinese" class="metric-label">
+                        Chinese Population
+                        <span id="metric-chinese-data" class="metric-data"
+                            style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population of Chinese Ethnicity</p>
                     </div>
-                    <div class="metric-container">
-                        <input type="checkbox" id="metric-malay" class="metric-checkbox">
-                        <label for="metric-malay" class="metric-label">Malay Population</label>
-                        <div class="metric-details">
-                            <p>Description for Malay Population...</p>
-                            <p>Legend for Malay Population...</p>
-                        </div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-malay" class="metric-checkbox">
+                    <label for="metric-malay" class="metric-label">
+                        Malay Population
+                        <span id="metric-malay-data" class="metric-data"
+                            style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population of Malay Ethnicity</p>
                     </div>
-                    <div class="metric-container">
-                        <input type="checkbox" id="metric-indian" class="metric-checkbox">
-                        <label for="metric-indian" class="metric-label">Indian Population</label>
-                        <div class="metric-details">
-                            <p>Description for Indian Population...</p>
-                            <p>Legend for Indian Population...</p>
-                        </div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-indian" class="metric-checkbox">
+                    <label for="metric-indian" class="metric-label">
+                        Indian Population
+                        <span id="metric-indian-data" class="metric-data"
+                            style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population of Indian Ethnicity</p>
+                    </div>
+                </div>
+
+                <div class="metric-container">
+                    <input type="checkbox" id="metric-public" class="metric-checkbox">
+                    <label for="metric-public" class="metric-label">
+                        Public Housing
+                        <span id="metric-public-data" class="metric-data"
+                            style="float: right; font-weight: bold;"></span>
+                    </label>
+                    <div class="metric-details">
+                        <p>Percentage of Population Living in Public Housing</p>
                     </div>
                 </div>
 
                 <p style="font-size: smaller;">Data for this map was taken from the <a href="https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data
-                        ">Singapore Department of Statistics</a>.</p>
+                        " target="_blank">Singapore Department of Statistics</a>.</p>
             </div>
+            <div id="map"></div>
+            <div id="legend-container"></div>
         </div>
     </div>
-    <div id="map"></div>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="./js/scripts.js"></script>
